@@ -8,9 +8,18 @@ import { PoseAnalysis, PoseLandmark } from '@/types/pose';
 interface PoseDetectionProps {
   selectedPosition: string;
   onAnalysisUpdate: (analysis: PoseAnalysis) => void;
+  fullScreen?: boolean;
+  darkTheme?: boolean;
+  isPaused?: boolean;
 }
 
-export default function PoseDetection({ selectedPosition, onAnalysisUpdate }: PoseDetectionProps) {
+export default function PoseDetection({ 
+  selectedPosition, 
+  onAnalysisUpdate, 
+  fullScreen = false, 
+  darkTheme = false, 
+  isPaused = false 
+}: PoseDetectionProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [fps, setFps] = useState(0);
   
@@ -97,7 +106,7 @@ export default function PoseDetection({ selectedPosition, onAnalysisUpdate }: Po
 
   // Draw pose landmarks on canvas
   useEffect(() => {
-    if (!results || !canvasRef.current || !videoRef.current) return;
+    if (!results || !canvasRef.current || !videoRef.current || isPaused) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -139,7 +148,50 @@ export default function PoseDetection({ selectedPosition, onAnalysisUpdate }: Po
       frameCountRef.current = 0;
       lastTimeRef.current = now;
     }
-  }, [results, selectedPosition, onAnalysisUpdate, drawPoseLandmarks]);
+  }, [results, selectedPosition, onAnalysisUpdate, drawPoseLandmarks, isPaused]);
+
+  // Auto-start detection in full-screen mode
+  useEffect(() => {
+    if (fullScreen && !isLoading && !isActive && !error) {
+      startDetection();
+    }
+  }, [fullScreen, isLoading, isActive, error, startDetection]);
+
+  if (fullScreen) {
+    return (
+      <div className="relative w-full h-full bg-gray-900">
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover opacity-0"
+          playsInline
+          muted
+        />
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full object-cover"
+          width={640}
+          height={480}
+        />
+        
+        {/* Status Overlay */}
+        <div className="absolute top-4 left-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded text-sm z-10">
+          {isLoading && 'Loading...'}
+          {!isLoading && !isActive && 'Camera stopped'}
+          {!isLoading && isActive && isPaused && 'Paused'}
+          {!isLoading && isActive && !isPaused && `FPS: ${fps}`}
+        </div>
+
+        {error && (
+          <div className="absolute inset-0 flex items-center justify-center bg-red-900 bg-opacity-80 text-white text-center p-4">
+            <div>
+              <p className="text-lg font-semibold mb-2">Camera Error</p>
+              <p>{error}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center space-y-4">

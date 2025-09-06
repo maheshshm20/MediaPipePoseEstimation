@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import PoseDetection from '@/components/PoseDetection';
 import FeedbackDisplay from '@/components/FeedbackDisplay';
 import PositionSelector from '@/components/PositionSelector';
@@ -30,6 +31,13 @@ export default function Home() {
             </div>
             
             <div className="flex items-center space-x-4">
+              <Link 
+                href="/drill"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                Start Drill
+              </Link>
+              
               <div className="text-sm text-gray-600">
                 Real-time pose analysis powered by MediaPipe
               </div>
