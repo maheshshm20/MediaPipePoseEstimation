@@ -34,14 +34,14 @@ export default function LandingAuth() {
         <div className="absolute inset-0 backdrop-blur-[2px]" />
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(88,166,255,0.08),transparent),linear-gradient(245deg,rgba(88,166,255,0.06),transparent)]" />
       </div>
-  <header className="flex items-center justify-between px-6 py-4 z-10 safe-top">
+  <header className="flex items-center justify-between px-6 py-4 pt-4 z-10">
         <h1 className="font-bold tracking-wide text-sm sm:text-base text-accent">JIU-JITSU TRAINING</h1>
         <button onClick={()=>setMode(m=>m==='login'?'signup':'login')} className="text-xs px-3 py-1 rounded bg-panel hover:bg-accent/10 border border-accent/30 text-accent">
           {mode==='login' ? 'Need an account?' : 'Have an account?'}
         </button>
       </header>
       <main className="flex-1 z-10 w-full overflow-y-auto">
-        <section className="container-mobile pt-8 pb-16 flex flex-col lg:flex-row gap-10 lg:gap-16">
+  <section className="container-mobile pt-16 pb-16 flex flex-col lg:flex-row gap-10 lg:gap-16">
           <div className="flex-1 w-full max-w-xl mx-auto">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-br from-accent via-accent/70 to-white bg-clip-text text-transparent">Train • Track • Improve</h2>
             <p className="text-brandText/80 text-sm md:text-base leading-relaxed mb-8">Realtime pose estimation for drills, joint angle analytics, rep counting and symmetry feedback. Sign up to start a private session in your browser—no backend required.</p>
