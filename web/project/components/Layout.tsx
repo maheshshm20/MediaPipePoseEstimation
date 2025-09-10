@@ -6,8 +6,8 @@ export function Layout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const { currentUser, logout } = useAuthStore();
   return (
-    <div className="min-h-screen flex flex-col bg-bg text-brandText">
-      <header className="sticky top-0 z-40 border-b border-panel bg-bg/95 backdrop-blur supports-[backdrop-filter]:bg-bg/80">
+    <div className="min-h-[100svh] flex flex-col bg-bg text-brandText">
+      <header className="sticky top-0 z-40 border-b border-panel bg-bg/95 backdrop-blur supports-[backdrop-filter]:bg-bg/80 safe-top">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ export function Layout({ children }: { children: ReactNode }) {
         )}
       </header>
       <main className="flex-1">{children}</main>
-      <footer className="py-6 text-center text-xs text-neutral-500 border-t border-panel">Local-first prototype.</footer>
+  <footer className="py-6 text-center text-xs text-neutral-500 border-t border-panel safe-bottom">Local-first prototype.</footer>
     </div>
   );
 }

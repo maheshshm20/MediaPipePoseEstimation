@@ -345,7 +345,7 @@ export default function DrillPage() {
   return (
     <RequireAuth>
     <Layout>
-      <main className="flex flex-col items-center bg-bg text-brandText min-h-[calc(100vh-120px)] px-4 py-6">
+      <main className="container-mobile flex flex-col items-center bg-bg text-brandText min-h-[calc(100svh-120px)] py-6">
         <div className="w-full max-w-4xl flex flex-col items-center">
           <div className="relative w-full aspect-video bg-panel rounded-xl overflow-hidden border border-accent/30">
             <video ref={videoRef} playsInline className="w-full h-full object-cover hidden" />
@@ -374,11 +374,11 @@ export default function DrillPage() {
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
-            <button onClick={()=> running ? stop() : start()} className="btn-accent px-6 py-2 rounded-2xl text-sm min-w-[140px]">{running? 'Pause':'Resume'}</button>
-            <button onClick={()=> stop(true)} disabled={!sessionActiveRef.current} className="px-6 py-2 rounded-2xl bg-red-600 hover:bg-red-500 disabled:opacity-40 text-sm min-w-[140px]">End Session</button>
+            <button onClick={()=> running ? stop() : start()} className="btn-accent w-full sm:w-auto px-6 py-3 rounded-2xl text-base min-w-[140px]">{running? 'Pause':'Resume'}</button>
+            <button onClick={()=> stop(true)} disabled={!sessionActiveRef.current} className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-red-600 hover:bg-red-500 disabled:opacity-40 text-base min-w-[140px]">End Session</button>
           </div>
 
-          <div className="mt-10 w-full max-w-4xl grid md:grid-cols-3 gap-6">
+          <div className="mt-10 w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             <div className="bg-panel rounded-lg p-4 border border-accent/20">
               <h3 className="text-sm font-semibold mb-3 tracking-wide text-brandText/70">Controls</h3>
               <div className="space-y-3 text-xs">

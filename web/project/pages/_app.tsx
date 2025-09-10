@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuthStore } from '@/components/authStore';
@@ -69,5 +70,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   if (!rehydrated) return <div style={{display:'flex',alignItems:'center',justifyContent:'center',height:'100vh',color:'#888',fontFamily:'sans-serif',background:'#000'}}>Loading…</div>;
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="theme-color" content="#0D1117" />
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }

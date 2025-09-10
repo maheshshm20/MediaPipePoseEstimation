@@ -30,15 +30,15 @@ export default function Profile() {
   return (
     <RequireAuth>
     <Layout>
-      <div className="px-6 py-12 max-w-5xl mx-auto">
+  <div className="container-mobile py-8 sm:py-12 max-w-5xl mx-auto">
         {justSavedId && (
           <div className="mb-6 rounded-lg border border-emerald-700 bg-emerald-900/40 px-4 py-3 text-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <span>Session saved successfully.</span>
             <button onClick={()=>{ setJustSavedId(null); const q={...router.query}; delete q.justSaved; router.replace({ pathname: router.pathname, query: q}, undefined, { shallow:true}); }} className="text-xs px-3 py-1 rounded bg-neutral-800 hover:bg-neutral-700">Dismiss</button>
           </div>
         )}
-  <h1 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight text-brandText">Training Profile</h1>
-        <div className="mb-8 max-w-xl space-y-4">
+  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 tracking-tight text-brandText">Training Profile</h1>
+  <div className="mb-8 w-full max-w-xl space-y-4 mx-auto">
           <div className="bg-panel border border-accent/20 rounded-xl p-5">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-sm font-semibold tracking-wide text-neutral-300">Account</h2>
@@ -46,18 +46,18 @@ export default function Profile() {
             </div>
             <div className="space-y-3 text-xs">
               <label className="block">Name
-                <input disabled={!edit} value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-2 text-xs disabled:opacity-60" />
+                <input disabled={!edit} value={form.name} onChange={e=>setForm(f=>({...f,name:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-3 text-base disabled:opacity-60" />
               </label>
               <label className="block">Email
-                <input disabled={!edit} value={form.email} onChange={e=>setForm(f=>({...f,email:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-2 text-xs disabled:opacity-60" />
+                <input disabled={!edit} value={form.email} onChange={e=>setForm(f=>({...f,email:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-3 text-base disabled:opacity-60" />
               </label>
               <label className="block">Password
-                <input disabled={!edit} type="password" value={form.password} onChange={e=>setForm(f=>({...f,password:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-2 text-xs disabled:opacity-60" />
+                <input disabled={!edit} type="password" value={form.password} onChange={e=>setForm(f=>({...f,password:e.target.value}))} className="mt-1 w-full bg-panel border border-panel focus:border-accent/50 rounded px-3 py-3 text-base disabled:opacity-60" />
               </label>
               {err && <p className="text-red-400 text-[10px]">{err}</p>}
-              {edit && <div className="flex gap-2 pt-2">
-                <button onClick={onSave} className="text-xs px-3 py-1 rounded btn-accent">Save</button>
-                <button onClick={()=>{setEdit(false); setForm({ name: currentUser!.name, email: currentUser!.email, password: currentUser!.password });}} className="text-xs px-3 py-1 rounded bg-panel border border-accent/20 hover:bg-accent/10">Cancel</button>
+              {edit && <div className="flex flex-col sm:flex-row gap-2 pt-2 w-full">
+                <button onClick={onSave} className="w-full sm:w-auto text-base px-4 py-3 rounded btn-accent">Save</button>
+                <button onClick={()=>{setEdit(false); setForm({ name: currentUser!.name, email: currentUser!.email, password: currentUser!.password });}} className="w-full sm:w-auto text-base px-4 py-3 rounded bg-panel border border-accent/20 hover:bg-accent/10">Cancel</button>
               </div>}
               <p className="text-[10px] text-neutral-500">Demo credentials always available: demo@jiujitsu.com / demo123</p>
             </div>
@@ -65,7 +65,7 @@ export default function Profile() {
         </div>
         <p className="text-gray-400 text-sm md:text-base mb-10 max-w-2xl">Aggregated performance metrics from your drill sessions. Reset clears in-memory stats (no persistence yet).</p>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-10">
           <div className="rounded-xl bg-panel border border-accent/20 p-5">
             <p className="text-[11px] uppercase tracking-wide text-neutral-500 mb-1">Total Sessions</p>
             <p className="text-2xl font-semibold">{store.sessions}</p>
@@ -80,7 +80,7 @@ export default function Profile() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           <div className="lg:col-span-2 space-y-6">
             <section className="rounded-xl bg-panel border border-accent/20 p-6">
               <h2 className="text-sm font-semibold tracking-wide text-neutral-300 mb-4">Symmetry & Posture</h2>
