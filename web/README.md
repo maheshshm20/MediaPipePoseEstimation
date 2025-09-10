@@ -14,6 +14,11 @@ python3 -m http.server 8080
 
 Option B: Node http-server (if you have Node.js)
 
+npm install 
+npm run build 
+npm run dev
+
+
 ```bash
 npm -g install http-server
 cd web/public
