@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #0D1117;
+    --panel: #161B22;
+    --text: #F0F6FC;
+    --accent: #58A6FF;
+  }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+}
+
+/* Accent utilities */
+.btn-accent {
+  background:#58A6FF;
+  color:#0D1117;
+  font-weight:500;
+  border-radius:0.75rem;
+  transition:background .18s ease, box-shadow .18s ease;
+}
+.btn-accent:hover { background:#3392ff; }
+.btn-accent:disabled { opacity:.55; cursor:not-allowed; }
+
+.border-panel { border-color:#1F242C; }
+.bg-panel { background:#161B22; }
+.text-accent { color:#58A6FF; }
+.ring-accent:focus { outline:2px solid #58A6FF; outline-offset:2px; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0D1117; }
+::-webkit-scrollbar-thumb { background: #1f2933; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #273444; }
